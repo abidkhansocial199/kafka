@@ -1,0 +1,13 @@
+
+spring:
+  profiles:
+  active: dev
+  application:
+    name: Ebeddedkafka
+  kafka:
+    consumer:
+      group-id: ebedded-kafka-group-id
+      client-id: ebedded-kafka-client-id
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      max-poll-records: 1
