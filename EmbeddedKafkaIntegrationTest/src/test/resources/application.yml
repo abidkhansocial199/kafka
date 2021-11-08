@@ -5,6 +5,7 @@ spring:
   application:
     name: Ebeddedkafka
   kafka:
+    bootstrap-servers: localhost:39092
     consumer:
       group-id: ebedded-kafka-group-id
       client-id: ebedded-kafka-client-id

@@ -1,13 +1,16 @@
-
+server:
+  port: 8181
 spring:
-  profiles:
-  active: dev
   application:
     name: Ebeddedkafka
   kafka:
+    client-id: test-client-id
+    bootstrap-servers: localhost:29092
+    producer:
+      acks: all
     consumer:
-      group-id: ebedded-kafka-group-id
-      client-id: ebedded-kafka-client-id
+      group-id: test-group-id
+      client-id: test-client-id
       enable-auto-commit: false
       auto-offset-reset: earliest
-      max-poll-records: 1
+      max-poll-records: 10
