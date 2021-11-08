@@ -1,6 +1,5 @@
 package embedded.kafka.EmbeddedKafkaIntegrationTest;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +13,7 @@ public class EmbeddedKafkaIntegrationTestApplication {
     private KafkaProducerService service;
 
     @GetMapping
-    public String get() throws JsonProcessingException {
+    public String get(){
 		System.out.println("get request...");
         BankModel model = new BankModel("iuou97asdf89", "7703", "13/05/2021", "John", "tim", 100d);
         service.send(model);
