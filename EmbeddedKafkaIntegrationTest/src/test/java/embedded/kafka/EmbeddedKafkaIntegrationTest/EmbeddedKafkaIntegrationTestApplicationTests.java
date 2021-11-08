@@ -1,6 +1,7 @@
 package embedded.kafka.EmbeddedKafkaIntegrationTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.awaitility.Awaitility;
@@ -35,7 +36,7 @@ class EmbeddedKafkaIntegrationTestApplicationTests {
 
 
     @Test
-    public void givenEmbeddedKafkaBroker_whenSendingToSimpleProducer_thenMessageReceived() throws JsonProcessingException, InterruptedException {
+    public void givenEmbeddedKafkaBroker_whenSendingToSimpleProducer_thenMessageReceived() {
          BankModel model = new BankModel("iuou97asdf89","7703", "13/05/2021", "John", "tim", 100d);
 
         //Producer
@@ -53,9 +54,14 @@ class EmbeddedKafkaIntegrationTestApplicationTests {
         ConsumerRecord<String,Object> record= consumerArgumentCaptor.getValue();
         assertNotNull(record);
         assertTrue("foo".contains(record.topic()));
-        assertEquals(model.getClass().getName(),
-                mapper.readValue(record.value().toString(),BankModel.class).getClass().getName());
-        assertEquals(mapper.writeValueAsString(model), record.value());
+        try {
+            assertEquals(model.getClass().getName(),
+                    mapper.readValue(record.value().toString(), BankModel.class).getClass().getName());
+            assertEquals(mapper.writeValueAsString(model), record.value());
+        }
+        catch (JsonProcessingException e){
+           e.printStackTrace();
+        }
 
     }
 }

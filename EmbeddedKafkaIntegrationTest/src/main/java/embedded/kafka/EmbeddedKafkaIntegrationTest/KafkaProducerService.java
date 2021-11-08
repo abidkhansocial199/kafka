@@ -13,8 +13,13 @@ public class KafkaProducerService {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
-    public void send(BankModel bankModel) throws JsonProcessingException {
-        kafkaTemplate.send("foo",mapper.writeValueAsString(bankModel));
+    public void send(BankModel bankModel) {
+        try {
+            kafkaTemplate.send("foo",mapper.writeValueAsString(bankModel));
+        }
+        catch (JsonProcessingException e){
+            e.printStackTrace();
+        }
     }
 
 }
