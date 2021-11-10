@@ -25,12 +25,12 @@ services:
     ports:
       - 9092:9092
       - 29092:29092
-  my-test-app:
-    container_name: test-app-container
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
+ # my-test-app:
+   # container_name: test-app-container
+   # build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    #ports:
       - 8080:8080
-    depends_on:
-      - kafka
+    #depends_on:
+     # - kafka
